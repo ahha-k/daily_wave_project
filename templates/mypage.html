@@ -43,6 +43,19 @@
       z-index: 1;
     }
 
+    .back-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 2;
+      font-size: 24px;
+      font-weight: bold;
+      color: #3559E5;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
     .entry {
       margin: 20px;
       border-bottom: 1px solid #999;
@@ -76,6 +89,9 @@
     <div class="header">
       <div class="header-bg"></div>
       <div class="header-title">DAILYWAVE</div>
+
+      <!-- X 버튼 추가함 (다시 되돌아가게) -->
+      <button class="back-button" onclick="goBack()">×</button>
     </div>
 
     {% for entry in entries %}
@@ -90,5 +106,12 @@
       </div>
     {% endfor %}
   </div>
+
+  <!--뒤로가기 함수 구현 -> 원래의 페이지로 돌아갈 수 있게게 -->
+  <script>
+    function goBack() {
+      window.location.href = "/";
+    }
+  </script>
 </body>
 </html>
