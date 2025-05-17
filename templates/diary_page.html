@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dailywave!</title>
+    <!-- CSS 파일 경로 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body>
+    <div class="output-window">
+      <div class="div">
+        <!-- header (weather, date) -->
+        <div class="header">
+          <img
+            class="weather_icon"
+            src="{{ url_for('static', filename='img/weather_icon.png') }}"
+            alt="Weather Icon"
+          />
+          <div class="date" id="selectedDate">12/04</div>
+          <button class="close_button" onclick="goBack()">
+            <img
+              class="close_icon"
+              src="{{ url_for('static', filename='img/close_icon.png') }}"
+              alt="Close"
+            />
+          </button>
+        </div>
+
+        <!-- 입력창 -->
+        <textarea
+          class="custom-textarea"
+          id="moodTextarea"
+          placeholder="오늘의 기분을 들려주세요"
+          oninput="showSaveButton()"
+        ></textarea>
+        <div class="text_blur"></div>
+
+        <!-- 출력창 -->
+        <div class="result">
+          <div class="emo_group">
+            <div class="emo_frame">
+              <div class="group">
+                <!-- 감정 분석 결과가 여기에 삽입됩니다 -->
+                <div class="text-wrapper-1"></div>
+                <div class="text-wrapper-2"></div>
+                <div class="text-wrapper-2"></div>
+              </div>
+            </div>
+          </div>
+          <div class="cd-container">
+            <img class="cd" src="{{ url_for('static', filename='img/나상현씨밴드 찬란.jpg') }}" id="cdImage" />
+            <div class="cd-hole"></div>
+          </div>
+          
+        </div>
+
+        <!-- 오버랩 부분 -->
+        <div class="overlap-wrapper">
+          <div class="content-container">
+            <button class="pause-button">
+              <img
+          class="pause"
+          src="{{ url_for('static', filename='img/Pause.png') }}"
+          alt="Pause" />
+            </button>
+            <div class="songInfo-wrapper">
+              <Marquee scrollAmount=2 scrollamount=left class="songInfo">노래 정보</Marquee>
+            </div>
+          </div>
+        </div> 
+      </div>
+    </div>
+    <!-- JS 파일 경로 -->
+    <script src="{{ url_for('static', filename='js/diary_page.js') }}"></script>
+
+
+</html>

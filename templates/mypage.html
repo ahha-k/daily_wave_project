@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MyPage - DailyWave</title>
+  <style>
+    body {
+      background-color: #FAFAFA;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .container {
+      width: 393px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+
+    .header {
+      position: relative;
+      text-align: center;
+      padding: 30px 0;
+    }
+
+    .header-bg {
+      width: 449px;
+      height: 100px;
+      background: rgba(216, 226, 235, 0.8);
+      border-radius: 90px;
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    .header-title {
+      font-size: 38px;
+      font-weight: 900;
+      color: #3559E5;
+      position: relative;
+      z-index: 1;
+    }
+
+    .entry {
+      margin: 20px;
+      border-bottom: 1px solid #999;
+      padding-bottom: 16px;
+      font-family: 'Paperlogy', sans-serif;
+    }
+
+    .entry-date {
+      font-size: 20px;
+      font-weight: 900;
+      color: #3E3333;
+      margin-bottom: 8px;
+    }
+
+    .hashtags {
+      font-size: 18px;
+      font-weight: 400;
+      color: #3E3333;
+      margin-bottom: 6px;
+    }
+
+    .keyword {
+      font-size: 18px;
+      font-weight: 400;
+      color: #3E3333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="header-bg"></div>
+      <div class="header-title">DAILYWAVE</div>
+    </div>
+
+    {% for entry in entries %}
+      <div class="entry">
+        <div class="entry-date">{{ entry.year }} {{ entry.date }}</div>
+        <div class="hashtags">
+          #{{ entry.emotions.emotion1 }}({{ entry.emotions.percent1 }}%) 
+          #{{ entry.emotions.emotion2 }}({{ entry.emotions.percent2 }}%) 
+          #{{ entry.emotions.emotion3 }}({{ entry.emotions.percent3 }}%)
+        </div>
+        <div class="keyword">추천 음악: {{ entry.music.artist }} - {{ entry.music.title }}</div>
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>

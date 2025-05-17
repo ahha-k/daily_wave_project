@@ -1,0 +1,355 @@
+.output-window {
+  background-color: #fafafa;
+  position: fixed; /* 화면에서 고정 위치 */
+  height: 100vh; /* 화면 전체 높이 */
+  width: 100vw; /* 화면 전체 너비 */
+  top: 50%; /* 세로 중앙 */
+  left: 50%; /* 가로 중앙 */
+  transform: translate(-50%, -50%); /* 정확한 중앙 정렬 */
+  display: flex; /* 내부 요소 정렬을 위한 Flexbox */
+  align-items: center; /* 수직 중앙 정렬 */
+  justify-content: center; /* 가로 중앙 정렬 */
+}
+
+
+.output-window .div {
+  background-color: #fafafa;
+  overflow: hidden; 
+  width: 393px;
+  height: 100vh; /* 화면 전체 높이 */
+  position: absolute;
+  box-sizing: border-box;
+}
+
+ .div .header {
+  position: relative;
+  display: flex; /* 가로 정렬을 위한 Flexbox */
+  align-items: center; /* 아이템 수직 중앙 정렬 */
+  justify-content: space-between; /* 양쪽 정렬 */
+  height: 62px;
+  width: 100%;
+  margin:30px 0;
+}
+
+/* 구름 아이콘 */
+ .weather_icon {
+  padding :  0 20px 0 30px;
+  width: 42px;
+  height: 28px;
+  flex-shrink: 0; /* 아이콘 크기 고정 */
+}
+
+/* 날짜 */
+ .date {
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 28px;
+  color: #5E85A6;
+  margin-left: 10px; /* 구름 아이콘과의 간격 */
+  flex-grow: 1; /* 남은 공간 사용 */
+  text-align: left; /* 왼쪽 정렬 */
+}
+
+/* 닫기 버튼 */
+.close_button {
+  padding : 10px;
+  all: unset; /* 기본 스타일 초기화 */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 30px;
+  
+}
+
+.close_icon {
+  width: 100%;
+  height: 100%;
+}
+
+  
+  /* 입력창 */
+    .custom-textarea {
+    position: absolute;
+    height: 319px;
+    left: 10px;
+    right: 10px;
+    top: 15%;
+  
+    font-family: 'Konkhmer Sleokchher';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    color: #3E3333;
+  
+    background: none;
+    border: none;
+    outline: none;
+    overflow-y: auto;
+    text-align: left;
+  
+    padding: 20px;
+  }
+  
+  
+    /* 스크롤바 전체 길이 */
+    .custom-textarea::-webkit-scrollbar {
+        width: 8px; /* 세로 스크롤바의 너비 */
+        height: 8px; /* 가로 스크롤바의 높이 */
+    }
+  
+    /* 스크롤바 핸들 (드래그 가능한 부분) */
+    .custom-textarea::-webkit-scrollbar-thumb {
+        background-color: #ccc; /* 핸들 색상 */
+        border-radius: 10px; /* 모서리 둥글게 */
+    }
+  
+    /* 스크롤바 핸들 (호버 상태) */
+    .custom-textarea::-webkit-scrollbar-thumb:hover {
+        background-color: #999; /* 핸들 호버 색상 */
+    }
+  
+  
+    /* 입력창에 placeholder 텍스트 추가 */
+    input::placeholder {
+        color: #aaa;  /* placeholder 색상 */
+        font-style: italic;  /* placeholder 텍스트 기울임 */
+    }
+  
+      
+      
+.text_blur {
+    position: absolute;
+    width: 95%;
+    height: 57%;
+    bottom: -55px;
+    left: 0;
+    background: #fafafa;
+    filter: blur(10px);
+    }
+  
+  
+  /* 출력창 */
+    .result {
+      overflow: hidden;
+      visibility: hidden; /* 초기 상태는 보이지 않음 */
+      opacity: 0; /* 초기 상태는 투명 */
+      position: absolute; /* 고정 위치 */
+      width: 333px;
+      height: 333px;
+      bottom: -100%; /* 화면 아래쪽에 배치 */
+      left: 50%; /* 화면 중앙에 배치 */
+      transform: translateX(-50%); /* 정확히 중앙 정렬 */
+      transition: visibility 0s, opacity 0.5s ease, transform 0.5s ease, bottom 0.5s ease;
+    }
+    
+    .result.show {
+      visibility: visible; /* 보이도록 설정 */
+      opacity: 1; /* 보이도록 설정 */
+      bottom: 0%; /* 화면에 올라옴 */
+      transform: translateX(-50%); /* 중앙 정렬 */
+    }
+  
+    /* 애니메이션 정의 */
+  @keyframes fadeInUp {
+    0% {
+      transform: translateY(20px); /* 처음에는 20px 아래에서 시작 */
+      opacity: 0; /* 초기 상태는 투명 */
+    }
+    100% {
+      transform: translateY(0); /* 원래 위치로 */
+      opacity: 1; /* 완전히 보이도록 */
+    }
+  }
+  
+  @keyframes rotateForever {
+    0% {
+      transform: rotate(0deg); /* 처음에는 회전하지 않음 */
+    }
+    100% {
+      transform: rotate(360deg); /* 360도 회전 */
+    }
+  }
+  
+.cd-container {
+  position: relative; /* 부모 요소에 relative 위치 설정 */
+  animation: fadeInUp 3s ease-out forwards, rotateForever 10s linear infinite;
+  width: 120%;  /* 부모 요소의 너비를 100%로 설정 */
+  height: 120%;  /* 부모 요소의 높이를 100%로 설정 */
+  top: -72%; /* 세로 중앙 정렬 */
+  left: -10%; /* 가로 중앙 정렬 */
+  transform: translate(-50%, -50%); /* 정확한 중앙 정렬 */
+  z-index: 2;
+  
+}
+
+.cd {
+  position: absolute;
+  object-fit: cover;  /* 이미지가 원형에 맞게 꽉 차도록 설정 */
+  width: 100%;  /* 부모 요소의 너비를 100%로 설정 */
+  border-radius: 50%;  /* 원형으로 만들기 */
+  height: 100%; 
+  z-index: 2;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  filter: blur(1px);
+}
+
+.cd-hole {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20%; /* 구멍의 크기 조절 */
+  height: 20%; /* 구멍의 크기 조절 */
+  background-color: #fafafa; /* 흰색 */
+  border-radius: 50%;  /* 원형으로 만들기 */
+  transform: translate(-50%, -50%); /* 정확한 중앙 정렬 */
+  filter: blur(2px);
+  z-index: 3;  /* 이미지를 위에 두기 */
+}
+
+  
+  
+  /* emo_group 애니메이션 - 빠르게 나타나도록 */
+  .result .emo_group {
+    position: relative;
+    height: 350px;
+    bottom: 8%;
+    z-index: 1;
+    animation: fadeInUp 0.2s ease-out forwards; /* 빠르게 올라오는 애니메이션 */
+  }
+  
+  
+    /* .emo_frame: 상하좌우 중앙 정렬 */
+    .emo_frame {
+      position: absolute;
+      width: 283px;
+      height: 59px;
+      top: 14%;
+      left: 56px;
+      background-color: #ffffff;
+      border-radius: 50px;
+      overflow: hidden;
+      box-shadow: 0px 0px 4px 4px #0000000d;
+    
+      /* Flexbox로 자식 요소 중앙 정렬 */
+      display: flex;
+      justify-content: center; /* 가로 중앙 정렬 */
+      align-items: center;     /* 세로 중앙 정렬 */
+    }
+    
+    /* .group: 그리드 레이아웃 적용 */
+    .group {
+      display: grid; /* 그리드 레이아웃 적용 */
+      grid-template-columns: repeat(3, 1fr); /* 3개의 동일한 크기의 열 생성 */
+      gap: 5px; /* 항목들 간의 간격 */
+      width: 100%; /* 부모 요소의 너비에 맞게 100% 설정 */
+      height: 21px;
+      padding: 0 15px;
+      justify-items: center; /* 가로 중앙 정렬 */
+      align-items: center;   /* 세로 중앙 정렬 */
+    }
+    
+    /* .emo_group, .text-wrapper-1, .text-wrapper-2 스타일 */
+    .output-window .text-wrapper,
+    .output-window .text-wrapper-2 {
+      font-family: Helvetica;
+      font-size: 15px;
+      text-align: center;
+      line-height: normal;
+    }
+    
+    /* 색상 지정 */
+    .output-window .text-wrapper-1 {
+      font-weight: bold;
+      color: #5e85a6;
+    }
+    
+    .output-window .text-wrapper-2 {
+      font-weight: 400;
+      color: #cccbc9; /* 기쁨 */
+    }
+    
+        
+      
+  
+    /* 버튼 */
+  .overlap-wrapper {
+    position: absolute;
+    display: flex;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    bottom: 50px;
+    right: 50px;
+    background-color: #664c4c; /* 테스트용 배경 */
+    transition: all 0.3s ease; /* 애니메이션 효과 */
+  }
+  
+  /* 변경된 상태 */
+  .overlap-wrapper.expanded {
+    width: 205px;
+    height: 52px;
+    bottom: 10%;
+    right:8%;
+    border-radius:50px;
+  }
+  
+  
+/* 부모 컨테이너 설정 */
+.content-container {
+  display: flex;                /* 자식 요소들을 가로로 배치 */
+  justify-content: center;      /* 자식 요소들을 수평 중앙 정렬 */
+  align-items: center; 
+  width: 100%;                  /* 부모 컨테이너가 100% 너비를 차지하도록 설정 */
+}
+
+/* 버튼 스타일 */
+.pause-button {
+  background: none;             /* 기본 버튼 배경 제거 */
+  border: none;                 /* 기본 버튼 테두리 제거 */
+  padding: 0 12px;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;          /* 상하 정렬 */
+  justify-content: center;      /* 좌우 정렬 */
+}
+
+
+  
+  .pause-button img {
+    width: 24px; /* 이미지 크기 조정 */
+    height: 24px; /* 이미지 크기 조정 */
+  }
+  
+  .songInfo-wrapper {
+    display: flex;               /* 자식 요소 중앙 정렬 */
+    justify-content: center;
+    align-items: center;
+    height: 100%;                /* 부모 크기 맞추기 */
+    width: 100%;                 /* 부모 크기 맞추기 */
+    display: none;               /* 처음에 숨겨놓기 */
+  }
+
+  /* 텍스트 스타일 */
+  .songInfo {
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    line-height: 1;
+    height: 40%;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;  
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    line-height:normal;
+  }
+  
+  /* 확장 시 텍스트 표시 */
+  .overlap-wrapper.expanded .songInfo{
+    display: block;
+  }
